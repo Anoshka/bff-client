@@ -1,0 +1,21 @@
+// src/styles/main.scss
+
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+html,
+body {
+  min-height: 100%;
+  background: $white;
+  color: $dark-gray;
+  font-family: "Open Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  @include desktop {
+    padding: 2rem;
+  }
+}
