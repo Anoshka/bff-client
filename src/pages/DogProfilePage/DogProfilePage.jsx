@@ -87,14 +87,14 @@ const DogProfilePage = () => {
                 <strong>♂️:</strong> {dog.gender}
               </li>
             </ul>
-            <a
-              href="https://barneysfurryfriends.ca/apply-to-adopt"
+            <Link
+              to="/apply-to-adopt"
               className="dog-profile__adopt-btn dog-profile__adopt-btn--top"
               target="_blank"
               rel="noopener noreferrer"
             >
               Apply To Adopt {dog.name}
-            </a>
+            </Link>
           </div>
         </div>
         <div className="dog-profile__description">
