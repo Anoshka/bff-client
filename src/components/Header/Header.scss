@@ -1,5 +1,3 @@
-// src/components/Header/Header.scss
-
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
@@ -7,6 +5,7 @@
   background: $white;
   color: $dark-gray;
   padding: 0 0;
+  overflow: visible;
 
   &__logo-container {
     display: flex;
@@ -29,7 +28,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 2;
+    z-index: 9999;
 
     .header__menu-icon {
       display: block;
@@ -69,7 +68,7 @@
     top: 100%;
     z-index: 1;
 
-    &--open {
+    &.header__nav--open {
       display: block;
     }
   }
@@ -86,12 +85,14 @@
   }
 
   &__nav-link {
+    font-family: $secondary-font;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
     display: block;
     padding: 2rem 2rem;
     color: $dark-gray;
     text-decoration: none;
-    font-family: "Montserrat", Arial, sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     border-bottom: 0.125rem solid transparent;
     transition: background 0.2s, border-bottom 0.2s;
 
@@ -101,17 +102,25 @@
     }
 
     &--active {
-      border-bottom: 0.125rem solid $dark-gray;
+      border-bottom: 0.1rem solid $dark-gray;
     }
   }
 
   // Desktop styles
   @include tablet {
-    padding: 1rem 0;
+    padding: 1rem 6rem;
+
+    @include desktop {
+      padding: 1rem 2rem;
+    }
 
     &__logo {
       width: 11.25rem;
       max-width: 100%;
+
+      @include desktop {
+        width: 12rem;
+      }
     }
 
     &__menu-toggle {
@@ -119,7 +128,9 @@
     }
 
     &__nav {
-      display: block !important;
+      font-family: $secondary-font;
+      font-weight: 300;
+      display: block;
       position: static;
       box-shadow: none;
       background: transparent;
@@ -136,13 +147,17 @@
     }
 
     &__nav-link {
-      padding: 1rem 0;
-      font-size: 1.1rem;
+      padding: 2rem 0 0.5rem;
+      font-size: 0.9rem;
       background: none;
 
       &:hover,
       &:focus {
         background: $white;
+      }
+
+      @include desktop {
+        font-size: 1rem;
       }
     }
   }

@@ -1,0 +1,267 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.dog-profile {
+  //max-width: 900px;
+  margin: 2rem auto 0;
+
+  @include desktop {
+    margin: 2rem 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  &__back {
+    color: $blue-gray;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-right: 1rem;
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @include desktop {
+      font-size: 2rem;
+    }
+  }
+
+  &__name {
+    font-family: $primary-font;
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: $dark-gray;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include desktop {
+      width: 100%;
+      justify-content: space-between;
+
+      margin-top: 4rem;
+    }
+  }
+
+  &__top-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    @include desktop {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__images {
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: $mid-gray;
+    border-radius: 0.3rem;
+    margin-top: 2rem;
+  }
+
+  &__main-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.3rem;
+    background: $white;
+    margin-bottom: 1.5rem;
+  }
+
+  &__thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    @include tablet {
+      gap: 1rem;
+    }
+  }
+
+  &__thumbnail {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    border: 1px solid $light-gray;
+    cursor: pointer;
+    transition: border 0.2s;
+    &:hover {
+      border: 2px solid $dark-gray;
+    }
+
+    @include tablet {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    @include desktop {
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+
+  &__info {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem 0;
+    justify-content: flex-start;
+    border-radius: 0.5rem;
+
+    @include desktop {
+      width: 100%;
+    }
+  }
+
+  &__about {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0 0 1rem 0;
+    color: $dark-gray;
+
+    @include desktop {
+      font-size: 4rem;
+    }
+  }
+
+  &__description {
+    font-family: $primary-font;
+    font-size: 1rem;
+    font-weight: 400;
+    color: $dark-gray;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: left;
+
+    @include desktop {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &__details {
+    list-style: none;
+    padding: 1rem 0 0;
+    font-size: 1rem;
+    font-family: $primary-font;
+    font-weight: 400;
+    align-self: start;
+    text-align: left;
+    color: $dark-gray;
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    @include desktop {
+      font-size: 1.8rem;
+      padding: 4rem 0 2rem;
+    }
+  }
+
+  &__detail {
+    padding-bottom: 1.5rem;
+  }
+
+  &__adopt-btn {
+    @include standard-button;
+    padding: 1rem 0;
+
+    @include desktop {
+      padding: 2rem 1rem;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    &--top {
+      display: none;
+      @include desktop {
+        display: flex;
+      }
+    }
+  }
+
+  &__loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #888;
+    margin: 4rem 0;
+  }
+}
+
+.dog-profile__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dog-profile__modal-image {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 1rem;
+  background: $white;
+}
+
+.dog-profile__modal-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2.5rem;
+  color: $white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.dog-profile__modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: $white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0 1rem;
+  user-select: none;
+
+  @include desktop {
+    font-size: 6rem;
+  }
+
+  &--left {
+    left: 0rem;
+  }
+  &--right {
+    right: 0rem;
+  }
+}

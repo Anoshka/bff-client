@@ -1,0 +1,174 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+.mailing-list {
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  &__content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include desktop {
+      max-width: none;
+      margin: 0;
+    }
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: $dark-gray;
+    margin-bottom: 1rem;
+    font-family: "Playfair Display", serif;
+  }
+
+  &__description {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    font-family: $primary-font, sans-serif;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    @include tablet {
+      flex-direction: row;
+      padding-top: 2rem;
+    }
+  }
+
+  &__input-group {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+
+    @include desktop {
+      max-width: none;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    //padding: 1rem 1.5rem;
+    padding: 0 0 1rem 1rem;
+    border: none;
+    border-bottom: 1px solid $light-gray;
+    font-size: 1rem;
+    font-family: $secondary-font;
+    @include desktop {
+      font-size: 1.2rem;
+    }
+
+    &:focus {
+      outline: none;
+      //border: 1px solid $dark-gray;
+    }
+
+    &::placeholder {
+      color: $dark-gray;
+      font-weight: 300;
+    }
+
+    &:disabled {
+      background-color: $white;
+      cursor: not-allowed;
+    }
+  }
+
+  &__error {
+    color: $error-red;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: block;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  &__button {
+    background-color: $mid-gray;
+    color: $dark-gray;
+    //border: none;
+    width: 100%;
+    padding: 1.2rem 2.5rem;
+    //border-radius: 8px;
+    font-size: 0.93rem;
+    font-weight: 700;
+    letter-spacing: 0.15rem;
+    cursor: pointer;
+    font-family: "Open Sans", sans-serif;
+    border: none;
+
+    @include desktop {
+      width: 30%;
+      padding: 1.2rem 0.2rem;
+    }
+
+    &:hover {
+      background-color: $light-gray;
+    }
+
+    &:active {
+      background-color: $light-gray;
+    }
+  }
+
+  &__success {
+    border-radius: 8px;
+    color: $dark-gray;
+    opacity: 75%;
+
+    &--subtitle {
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+
+    &--para {
+      font-size: 1.2rem;
+      margin: 0 -1rem;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .mailing-list {
+    padding: 0;
+
+    &__container {
+      padding: 0 1rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__description {
+      font-size: 1rem;
+    }
+
+    &__form {
+      gap: 1.5rem;
+    }
+
+    &__input-group {
+      max-width: 100%;
+    }
+
+    &__button {
+      @include tablet {
+        width: 30%;
+        padding: 1.2rem 0.2rem;
+      }
+    }
+  }
+}

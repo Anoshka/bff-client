@@ -1,0 +1,98 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.adoptable-card {
+  display: flex;
+  flex-direction: column;
+  background: $light-gray;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 20rem;
+  min-height: 480px;
+  text-decoration: none;
+  color: $dark-gray;
+  position: relative;
+
+  @include desktop {
+    width: 25rem;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &__image-wrapper {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 0.5;
+      transition: opacity 0.5s;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+    gap: 0.25rem;
+  }
+
+  &__name {
+    font-size: 1.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 0 0.25rem 0;
+    padding: 0 1.8rem;
+    color: $dark-gray;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $mid-gray;
+    }
+  }
+
+  &__details {
+    width: 120%;
+    text-align: left;
+    color: $mid-gray;
+    font-size: 0.84rem;
+    border-top: 1px solid $mid-gray;
+    margin: 0 -1.25rem;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  &__age,
+  &__weight,
+  &__gender,
+  &__breed {
+    margin: 0;
+    padding: 0.3rem 0 0.3rem 1.25rem;
+  }
+
+  &__breed {
+    margin-top: 1rem;
+  }
+
+  &__description {
+    font-size: 1rem;
+    color: $mid-gray;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+    flex: 1;
+  }
+}
