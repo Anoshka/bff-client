@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import logo from "../../assets/logo/bff-logo.png"; // Adjust path as needed
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../assets/logo/bff-logo.png";
 import "./Header.scss";
 
 const navLinks = [
@@ -15,16 +15,20 @@ const navLinks = [
 ];
 
 const Header = () => {
+  console.log("opening menu");
   const [menuOpen, setMenuOpen] = useState(false);
+  console.log("menu state", menuOpen);
 
   return (
     <header className="header">
       <div className="header__logo-container">
-        <img
-          src={logo}
-          alt="Barney's Furry Friends Logo"
-          className="header__logo"
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Barney's Furry Friends Logo"
+            className="header__logo"
+          />
+        </Link>
         <button
           className="header__menu-toggle"
           aria-label="Toggle navigation"

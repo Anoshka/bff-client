@@ -17,3 +17,25 @@
     @content;
   }
 }
+
+@mixin standard-button {
+  display: inline-block;
+  background: $mid-gray;
+  color: $dark-gray;
+  padding: 1rem 2rem;
+  font-family: $secondary-font;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+
+  &:hover,
+  &:focus {
+    background: darken($mid-gray, 10%);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
