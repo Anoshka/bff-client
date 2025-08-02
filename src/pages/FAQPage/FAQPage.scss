@@ -1,0 +1,72 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.faq {
+  padding: 0 0.5rem 3rem;
+
+  @include tablet {
+    padding: 0 9rem 3rem 0.5rem;
+  }
+  &__title {
+    font-family: $secondary-font;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    color: $dark-gray;
+  }
+
+  &__subtitle {
+    font-family: $secondary-font;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    color: $dark-gray;
+  }
+
+  &__question {
+    text-align: left;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__answer {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 4rem;
+
+    &--link {
+      color: $primary-blue;
+
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+
+  &__standalone {
+    text-align: left;
+    font-family: $secondary-font;
+    color: $dark-gray;
+  }
+
+  &__contact {
+    text-align: left;
+    font-style: italic;
+
+    @include tablet {
+      padding-top: 2rem;
+    }
+  }
+
+  &__link {
+    color: $primary-blue;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}
