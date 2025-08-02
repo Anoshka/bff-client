@@ -11,7 +11,7 @@ const navLinks = [
   { to: "/happy-tails", label: "HAPPY TAILS" },
   { to: "/faq", label: "FAQ" },
   { to: "/how-to-help", label: "HOW TO HELP" },
-  { to: "/contact", label: "CONTACT US" },
+  { to: "/contact-us", label: "CONTACT US" },
 ];
 
 const Header = () => {

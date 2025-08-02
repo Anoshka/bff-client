@@ -4,7 +4,7 @@
 .happy-tails {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  //min-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -13,31 +13,78 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  color: $white;
+
+  @include desktop {
+    justify-content: center;
+  }
 
   &__content {
     position: relative;
     z-index: 2;
     width: 100%;
     margin: 0 auto;
-    padding: 3rem 0;
+    padding: 0 0;
     text-align: center;
     background: rgba($dark-gray, 0.3);
-    border-radius: 1.5rem;
+    //border-radius: 1.5rem;
   }
 
   &__title {
-    font-family: "Playfair Display", serif;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: #333;
+    font-family: $fancy-font;
+    font-weight: 300;
+    font-size: 1.8rem;
+    padding: 2rem;
+    margin: 0;
+
+    @include desktop {
+      font-size: 2rem;
+      padding: 3rem 0 2.5rem;
+    }
   }
 
   &__subtitle {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #666;
-    opacity: 0.8;
+    font-family: $primary-font;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 1rem 2rem 0;
+
+    @include desktop {
+      text-align: left;
+      padding: 0 30rem;
+    }
+  }
+
+  &__reco {
+    text-align: left;
+    padding: 0 5rem 0 3rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+
+    @include tablet {
+      text-align: center;
+      padding: 0.5rem 0;
+    }
+
+    @include desktop {
+      text-align: left;
+      padding: 0 30rem;
+    }
+  }
+
+  &__opinion {
+    padding: 0 4rem 3rem;
+    margin: 0;
+
+    @include desktop {
+      text-align: left;
+      padding: 0 30rem;
+    }
+  }
+
+  &__fb-link {
+    color: $white;
   }
 
   &__fb-embed {
@@ -51,5 +98,11 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       max-width: 100%;
     }
+  }
+
+  &__fb-reviews {
+    height: 10rem;
+    margin: 10rem;
+    padding: 10rem;
   }
 }
