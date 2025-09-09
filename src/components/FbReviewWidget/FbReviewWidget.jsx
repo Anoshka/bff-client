@@ -6,7 +6,7 @@ const ELFSIGHT_WIDGET_CLASS =
 
 function ElfsightWidget() {
   useEffect(() => {
-    // Load Elfsight script
+    // elfsight load
     if (
       !document.querySelector(
         'script[src="https://apps.elfsight.com/p/platform.js"]'
@@ -18,7 +18,7 @@ function ElfsightWidget() {
       document.body.appendChild(script);
     }
 
-    // Function to hide Elfsight branding
+    // hide elfsight branding
     const hideElfsightBranding = () => {
       const brandingLinks = document.querySelectorAll(
         'a[href*="elfsight.com/facebook-reviews-widget"]'
@@ -32,15 +32,14 @@ function ElfsightWidget() {
       });
     };
 
-    // Hide branding immediately and also after a delay
     hideElfsightBranding();
 
-    // Hide branding again after widget loads (with delay)
+    // post wdget load - hide branding
     setTimeout(hideElfsightBranding, 1000);
     setTimeout(hideElfsightBranding, 2000);
     setTimeout(hideElfsightBranding, 3000);
 
-    // Set up a mutation observer to catch dynamically added elements
+    // dynamically add elements
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.addedNodes.length) {
