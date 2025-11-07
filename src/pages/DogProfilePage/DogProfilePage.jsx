@@ -1,19 +1,50 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getAdoptableById } from "../../services/adoptablesServices";
+import {
+  getAdoptableBySlug,
+  getAdoptableById,
+} from "../../services/adoptablesServices";
 import "./DogProfilePage.scss";
 
 const DogProfilePage = () => {
   const { id } = useParams();
   const [dog, setDog] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
 
   useEffect(() => {
-    getAdoptableById(id).then(setDog);
+    const fetchDog = async () => {
+      try {
+        setLoading(true);
+        // Try slug first, then fall back to ID
+        let adoptable = await getAdoptableBySlug(id);
+        if (!adoptable) {
+          adoptable = await getAdoptableById(id);
+        }
+        setDog(adoptable);
+      } catch (error) {
+        console.error("Error fetching dog:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDog();
   }, [id]);
 
-  if (!dog) return <div className="dog-profile__loading">Loading...</div>;
+  if (loading) {
+    return <div className="dog-profile__loading">Loading...</div>;
+  }
+
+  if (!dog) {
+    return (
+      <div className="dog-profile__error">
+        <p>Pet not found.</p>
+        <Link to="/adoptables">Back to Adoptables</Link>
+      </div>
+    );
+  }
 
   const openModal = (idx) => {
     setModalIndex(idx);
@@ -48,12 +79,16 @@ const DogProfilePage = () => {
                 onClick={() => openModal(0)}
                 style={{ cursor: "pointer" }}
               />
-            ) : (
+            ) : dog.image ? (
               <img
                 src={dog.image}
                 alt={dog.name}
                 className="dog-profile__main-image"
               />
+            ) : (
+              <div className="dog-profile__image-placeholder">
+                No Image Available
+              </div>
             )}
 
             {dog.images && dog.images.length > 1 && (
@@ -74,44 +109,61 @@ const DogProfilePage = () => {
           <div className="dog-profile__info">
             <h2 className="dog-profile__about">Meet {dog.name}!</h2>
             <ul className="dog-profile__details">
-              <li className="dog-profile__detail">
-                <strong>🐶:</strong> {dog.breed}
-              </li>
-              <li className="dog-profile__detail">
-                <strong>🎂:</strong> {dog.age}
-              </li>
-              <li className="dog-profile__detail">
-                <strong>⚖️:</strong> {dog.weight}
-              </li>
-              <li className="dog-profile__detail">
-                <strong>♂️:</strong> {dog.gender}
-              </li>
+              {dog.breed && (
+                <li className="dog-profile__detail">
+                  <strong>🐶:</strong> {dog.breed}
+                </li>
+              )}
+              {dog.age && (
+                <li className="dog-profile__detail">
+                  <strong>🎂:</strong> {dog.age}
+                </li>
+              )}
+              {dog.weight && (
+                <li className="dog-profile__detail">
+                  <strong>⚖️:</strong> {dog.weight}
+                </li>
+              )}
+              {dog.gender && (
+                <li className="dog-profile__detail">
+                  <strong>♂️:</strong> {dog.gender}
+                </li>
+              )}
             </ul>
-            <Link
-              to="/apply-to-adopt"
-              className="dog-profile__adopt-btn dog-profile__adopt-btn--top"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Apply To Adopt {dog.name}
-            </Link>
+            {dog.adoptionStatus === "available" && (
+              <Link
+                to="/apply-to-adopt"
+                className="dog-profile__adopt-btn dog-profile__adopt-btn--top"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Apply To Adopt {dog.name}
+              </Link>
+            )}
+            {dog.adoptionStatus === "adopted" && (
+              <div className="dog-profile__adopted-badge">
+                This pet has been adopted!
+              </div>
+            )}
           </div>
         </div>
-        <div className="dog-profile__description">
-          <p className="dog-profile__description">
+        {dog.details && (
+          <div className="dog-profile__description">
             {dog.details.split("\n\n").map((para, idx) => (
               <p key={idx}>{para}</p>
             ))}
-          </p>
-        </div>
-        <a
-          href="https://barneysfurryfriends.ca/apply-to-adopt"
-          className="dog-profile__adopt-btn dog-profile__adopt-btn--bottom"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Apply To Adopt {dog.name}
-        </a>
+          </div>
+        )}
+        {dog.adoptionStatus === "available" && (
+          <a
+            href="https://barneysfurryfriends.ca/apply-to-adopt"
+            className="dog-profile__adopt-btn dog-profile__adopt-btn--bottom"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Apply To Adopt {dog.name}
+          </a>
+        )}
       </div>
       {modalOpen && dog.images && dog.images.length > 0 && (
         <div className="dog-profile__modal" onClick={closeModal}>

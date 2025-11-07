@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -12,6 +12,13 @@ import FAQPage from "./pages/FAQPage/FAQPage.jsx";
 import HelpPage from "./pages/HelpPage/HelpPage.jsx";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
+import Pages from "./components/Pages/Pages.jsx";
+
+// Wrapper component to extract slug from URL params
+const DynamicPage = () => {
+  const { slug } = useParams();
+  return <Pages slug={slug} />;
+};
 
 const AppRoutes = () => {
   return (
@@ -26,8 +33,9 @@ const AppRoutes = () => {
         <Route path="/happy-tails" element={<HappyTailsPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/how-to-help" element={<HelpPage />} />
-        <Route path="/how-to-help" element={<HelpPage />} />
         <Route path="/contact-us" element={<ContactUsPage />} />
+        {/* Dynamic route for Sanity pages - must be after static routes */}
+        <Route path="/:slug" element={<DynamicPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
