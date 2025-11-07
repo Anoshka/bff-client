@@ -193,7 +193,7 @@ export default defineType({
       title: 'Show in Header Navigation',
       type: 'boolean',
       description: 'Add this page to the main navigation menu',
-      initialValue: false,
+      initialValue: true,
     }),
     defineField({
       name: 'headerOrder',

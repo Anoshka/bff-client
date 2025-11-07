@@ -122,7 +122,7 @@ export default defineType({
       title: 'Featured',
       type: 'boolean',
       description: 'Show this pet on the homepage',
-      initialValue: false,
+      initialValue: true,
     }),
     defineField({
       name: 'order',
