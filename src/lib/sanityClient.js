@@ -108,7 +108,7 @@ export const allPagesQuery = `*[_type == "page"] | order(headerOrder asc, title 
   headerOrder
 }`;
 
-export const headerPagesQuery = `*[_type == "page" && showInHeader == true] | order(headerOrder asc, title asc) {
+export const headerPagesQuery = `*[_type == "page" && defined(showInHeader) && showInHeader == true] | order(headerOrder asc, title asc) {
   _id,
   title,
   "slug": slug.current,
